@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>kimetu_list</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="list-box" aria-label="一覧リスト">
+        <h1 class="title">鬼滅の刃キャラクター</h1>
+
+        <!-- ヘッダー行 -->
+        <div class="row header" role="row">
+          <div class="cell name" role="columnheader">名前</div>
+          <div class="cell img" role="columnheader">画像</div>
+
+          <div class="cell category-cell" role="columnheader">
+            <div class="category-wrap">
+              <!-- クリックする見出し -->
+              <div class="category">カテゴリ</div>
+
+              <!-- カテゴリ選択肢 -->
+              <div id="categoryMenu" class="category-menu is-hidden">
+                <label
+                  ><input type="radio" name="category" value="all" checked />
+                  全て</label
+                >
+                <label
+                  ><input type="radio" name="category" value="kisatutai" />
+                  鬼殺隊</label
+                >
+                <label
+                  ><input type="radio" name="category" value="oni" /> 鬼</label
+                >
+                <label
+                  ><input type="radio" name="category" value="hasira" />
+                  柱</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ローディング画面 -->
+        <div id="loading" class="loading loaded">
+          <p class="loading-text">Loading...</p>
+          <div class="spinner"></div>
+        </div>
+
+        <!-- コンテンツを表示する場所 -->
+        <div id="characterRows"></div>
+      </section>
+    </main>
+    <script src="index.js"></script>
+  </body>
+</html>
