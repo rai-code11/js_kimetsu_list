@@ -1,36 +1,9 @@
-//全キャラクターを取得
-async function all() {
-  const allChar = await fetch(
-    "https://ihatov08.github.io/kimetsu_api/api/all.json",
+// キャラクター取得
+async function getCharacters(value) {
+  const response = await fetch(
+    `https://ihatov08.github.io/kimetsu_api/api/${value}.json`,
   );
-  const data = await allChar.json();
-  renderCharacters(data);
-}
-
-//鬼殺隊を取得
-async function kisatu() {
-  const kisatutai = await fetch(
-    "https://ihatov08.github.io/kimetsu_api/api/kisatsutai.json",
-  );
-  const data = await kisatutai.json();
-  renderCharacters(data);
-}
-
-//鬼を取得
-async function oni() {
-  const oni = await fetch(
-    "https://ihatov08.github.io/kimetsu_api/api/oni.json",
-  );
-  const data = await oni.json();
-  renderCharacters(data);
-}
-
-//柱を取得
-async function hasira() {
-  const hasira = await fetch(
-    "https://ihatov08.github.io/kimetsu_api/api/hashira.json",
-  );
-  const data = await hasira.json();
+  const data = await response.json();
   renderCharacters(data);
 }
 
@@ -88,13 +61,11 @@ menu.addEventListener("change", async (e) => {
   //category以外を取得しないため
   if (e.target.name !== "category") return;
 
-  const v = e.target.value;
+  const category = e.target.value;
+
   try {
     showLoading();
-    if (v === "all") await all();
-    if (v === "kisatutai") await kisatu();
-    if (v === "hasira") await hasira();
-    if (v === "oni") await oni();
+    await getCharacters(category);
 
     // 1秒待ってから出す
     await new Promise((r) => setTimeout(r, 1000));
@@ -103,4 +74,4 @@ menu.addEventListener("change", async (e) => {
   }
 });
 
-all();
+getCharacters("all");
